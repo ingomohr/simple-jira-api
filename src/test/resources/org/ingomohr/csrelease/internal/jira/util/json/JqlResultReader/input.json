@@ -1,0 +1,238 @@
+{
+	"expand": "schema,names",
+	"startAt": 0,
+	"maxResults": 50,
+	"total": 17,
+	"issues": [
+		{
+			"expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
+			"id": "220992",
+			"self": "https://my.jira.server.com/rest/api/2/issue/220992",
+			"key": "OSP-1990",
+			"fields": {
+				"customfield_14271": null,
+				"customfield_10070": {
+					"self": "https://my.jira.server.com/rest/api/2/customFieldOption/10142",
+					"value": "Mittel",
+					"id": "10142",
+					"disabled": false
+				},
+				"customfield_14670": {
+					"self": "https://my.jira.server.com/rest/api/2/customFieldOption/19326",
+					"value": "Nein",
+					"id": "19326",
+					"disabled": false
+				},
+				"customfield_14273": null,
+				"customfield_12770": {
+					"self": "https://my.jira.server.com/rest/api/2/customFieldOption/12610",
+					"value": "0%",
+					"id": "12610",
+					"disabled": false
+				},
+				"customfield_10470": "TPLA-519",
+				"customfield_14672": null,
+				"fixVersions": [
+					{
+						"self": "https://my.jira.server.com/rest/api/2/version/28940",
+						"id": "28940",
+						"description": "Initial release",
+						"name": "osiris_ui_editor_testcase_1_0_0",
+						"archived": false,
+						"released": true,
+						"releaseDate": "2022-12-01"
+					}
+				],
+				"customfield_13621": null,
+				"resolution": {
+					"self": "https://my.jira.server.com/rest/api/2/resolution/1",
+					"id": "1",
+					"description": "A fix for this issue is checked into the tree and tested.",
+					"name": "Fixed"
+				},
+				"customfield_13620": null,
+				"lastViewed": null,
+				"customfield_12085": null,
+				"customfield_13573": {
+					"self": "https://my.jira.server.com/rest/api/2/customFieldOption/13415",
+					"value": "Business",
+					"id": "13415",
+					"disabled": false
+				},
+				"priority": {
+					"self": "https://my.jira.server.com/rest/api/2/priority/3",
+					"iconUrl": "https://my.jira.server.com/images/icons/priorities/major.svg",
+					"name": "Normal (major)",
+					"id": "3"
+				},
+				"customfield_11278": null,
+				"labels": [],
+				"aggregatetimeoriginalestimate": null,
+				"timeestimate": null,
+				"versions": [],
+				"issuelinks": [],
+				"assignee": {
+					"self": "https://my.jira.server.com/rest/api/2/user?username=username-2",
+					"name": "username-2",
+					"key": "user-key-2",
+					"emailAddress": "sample1@mail.address",
+					"avatarUrls": {
+						"48x48": "https://my.jira.server.com/secure/useravatar?avatarId=13155",
+						"24x24": "https://my.jira.server.com/secure/useravatar?size=small&avatarId=13155",
+						"16x16": "https://my.jira.server.com/secure/useravatar?size=xsmall&avatarId=13155",
+						"32x32": "https://my.jira.server.com/secure/useravatar?size=medium&avatarId=13155"
+					},
+					"displayName": "Sample Name 1",
+					"active": true,
+					"timeZone": "Europe/Berlin"
+				},
+				"status": {
+					"self": "https://my.jira.server.com/rest/api/2/status/6",
+					"description": "The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.",
+					"iconUrl": "https://my.jira.server.com/images/icons/status_generic.gif",
+					"name": "Closed",
+					"id": "6",
+					"statusCategory": {
+						"self": "https://my.jira.server.com/rest/api/2/statuscategory/3",
+						"id": 3,
+						"key": "done",
+						"colorName": "green",
+						"name": "Done"
+					}
+				},
+				"customfield_14370": null,
+				"customfield_15580": null,
+				"components": [
+					{
+						"self": "https://my.jira.server.com/rest/api/2/component/25785",
+						"id": "25785",
+						"name": "osiris_ui_editor_testcase"
+					}
+				],
+				"customfield_12071": null,
+				"customfield_14371": null,
+				"customfield_10171": "9223372036854775807",
+				"customfield_10050": null,
+				"customfield_13600": null,
+				"aggregatetimeestimate": null,
+				"customfield_14084": "2",
+				"customfield_14081": 0.0,
+				"creator": {
+					"self": "https://my.jira.server.com/rest/api/2/user?username=my_user_name",
+					"name": "my_user_name",
+					"key": "my_user_name",
+					"emailAddress": "sample2@mail.adress",
+					"avatarUrls": {
+						"48x48": "https://my.jira.server.com/secure/useravatar?ownerId=my_user_name&avatarId=16553",
+						"24x24": "https://my.jira.server.com/secure/useravatar?size=small&ownerId=my_user_name&avatarId=16553",
+						"16x16": "https://my.jira.server.com/secure/useravatar?size=xsmall&ownerId=my_user_name&avatarId=16553",
+						"32x32": "https://my.jira.server.com/secure/useravatar?size=medium&ownerId=my_user_name&avatarId=16553"
+					},
+					"displayName": "Sample Name 2",
+					"active": true,
+					"timeZone": "Europe/Berlin"
+				},
+				"customfield_14082": "0",
+				"subtasks": [],
+				"customfield_15174": null,
+				"customfield_15577": null,
+				"reporter": {
+					"self": "https://my.jira.server.com/rest/api/2/user?username=my_user_name",
+					"name": "my_user_name",
+					"key": "my_user_name",
+					"emailAddress": "sample2@mail.adress",
+					"avatarUrls": {
+						"48x48": "https://my.jira.server.com/secure/useravatar?ownerId=my_user_name&avatarId=16553",
+						"24x24": "https://my.jira.server.com/secure/useravatar?size=small&ownerId=my_user_name&avatarId=16553",
+						"16x16": "https://my.jira.server.com/secure/useravatar?size=xsmall&ownerId=my_user_name&avatarId=16553",
+						"32x32": "https://my.jira.server.com/secure/useravatar?size=medium&ownerId=my_user_name&avatarId=16553"
+					},
+					"displayName": "Sample Name 2",
+					"active": true,
+					"timeZone": "Europe/Berlin"
+				},
+				"customfield_15575": null,
+				"customfield_11770": null,
+				"aggregateprogress": {
+					"progress": 0,
+					"total": 0
+				},
+				"customfield_11772": null,
+				"progress": {
+					"progress": 0,
+					"total": 0
+				},
+				"votes": {
+					"self": "https://my.jira.server.com/rest/api/2/issue/OSP-1990/votes",
+					"votes": 0,
+					"hasVoted": false
+				},
+				"customfield_14080": null,
+				"issuetype": {
+					"self": "https://my.jira.server.com/rest/api/2/issuetype/10801",
+					"id": "10801",
+					"description": "Issue Type description",
+					"iconUrl": "https://my.jira.server.com/secure/viewavatar?size=xsmall&avatarId=11641&avatarType=issuetype",
+					"name": "My Issue Type",
+					"subtask": false,
+					"avatarId": 11641
+				},
+				"customfield_14591": null,
+				"timespent": null,
+				"customfield_14592": null,
+				"project": {
+					"self": "https://my.jira.server.com/rest/api/2/project/13687",
+					"id": "13687",
+					"key": "MP",
+					"name": "My Project",
+					"projectTypeKey": "software",
+					"avatarUrls": {
+						"48x48": "https://my.jira.server.com/secure/projectavatar?pid=13687&avatarId=14136",
+						"24x24": "https://my.jira.server.com/secure/projectavatar?size=small&pid=13687&avatarId=14136",
+						"16x16": "https://my.jira.server.com/secure/projectavatar?size=xsmall&pid=13687&avatarId=14136",
+						"32x32": "https://my.jira.server.com/secure/projectavatar?size=medium&pid=13687&avatarId=14136"
+					},
+					"projectCategory": {
+						"self": "https://my.jira.server.com/rest/api/2/projectCategory/11152",
+						"id": "11152",
+						"description": "Description of project category",
+						"name": "My Project Category"
+					}
+				},
+				"customfield_14079": null,
+				"aggregatetimespent": null,
+				"resolutiondate": "2022-11-03T14:44:49.000+0100",
+				"workratio": -1,
+				"watches": {
+					"self": "https://my.jira.server.com/rest/api/2/issue/OSP-1990/watchers",
+					"watchCount": 0,
+					"isWatching": false
+				},
+				"customfield_11070": {
+					"self": "https://my.jira.server.com/rest/api/2/customFieldOption/12413",
+					"value": "1",
+					"id": "12413",
+					"disabled": false
+				},
+				"customfield_15671": null,
+				"customfield_15672": null,
+				"customfield_12680": null,
+				"created": "2022-11-03T10:37:08.000+0100",
+				"customfield_15670": null,
+				"customfield_14588": null,
+				"customfield_12679": null,
+				"updated": "2022-11-03T14:44:49.000+0100",
+				"customfield_14290": null,
+				"timeoriginalestimate": null,
+				"description": "This is the description of the issue",
+				"customfield_12677": null,
+				"summary": "This is the summary of the issue",
+				"customfield_11170": "2|zwiyos:",
+				"customfield_13590": null,
+				"customfield_13870": {
+					
+				}
+			}
+		}
+	]
+}
