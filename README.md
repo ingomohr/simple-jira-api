@@ -14,13 +14,15 @@ Simple API to read information from Jira
 * Calls REST end points on the Jira instance
 * Automatically closes the connection afterwards
 
+### Requirements
+- Java 17 JRE installed (or newer)
+- Access to some Jira instance (tested on Jira Server 8.22.6)
 
 ### How to Build
-:bulb: _This also builds the JAR-with-dependencies_
-
-(Requires Maven installed)
+- You need Maven installed (e.g. 3.8.6)
 
 On your terminal run:
 ```
 mvn clean install
 ```
+:bulb: _This also builds the JAR-with-dependencies_
