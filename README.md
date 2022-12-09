@@ -35,9 +35,9 @@ String user = "myName@sampleMail.com";
 String apiToken = "123Fly";
 String jiraInstance = "https://my-name.atlassian.net/";
 
-JiraAccessConfig config = new JiraAccessConfig(jiraInstance, user, apiToken);
-
-JiraIssuesJqlExecutor executor = new JiraIssuesJqlExecutor();
 String jql = "project = W2CDEMO ORDER BY Rank ASC";
+
+JiraAccessConfig config = new JiraAccessConfig(jiraInstance, user, apiToken);
+JiraIssuesJqlExecutor executor = new JiraIssuesJqlExecutor();
 List<Issue> issues = executor.execute(config, jql);
 ```
