@@ -4,7 +4,7 @@
 Simple API to read information from Jira
 
 ### Features
-- ✅ Read Versions
+- ✅ Read versions
 - ✅ Read released versions in a certain time window
 - ✅ Read issues for a given JQL query
 - ✅ Read issues for a given fix version
@@ -37,7 +37,7 @@ String user = "myName@sampleMail.com";
 String apiToken = "123Fly";
 String jiraInstance = "https://my-name.atlassian.net/";
 
-String jql = "project = W2CDEMO ORDER BY Rank ASC";
+String jql = "project = MYPROJ ORDER BY Rank ASC";
 
 JiraAccessConfig config = new JiraAccessConfig(jiraInstance, user, apiToken);
 JiraIssuesJqlExecutor executor = new JiraIssuesJqlExecutor();
