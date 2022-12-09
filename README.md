@@ -30,6 +30,8 @@ mvn clean install
 
 ### Examples
 #### Read all Issues from Project
+_Please note that the example requires an API token to be generated at the given user's account. For Jira Server instances, the user password can be used, too._
+
 ```Java
 String user = "myName@sampleMail.com";
 String apiToken = "123Fly";
