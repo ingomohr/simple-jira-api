@@ -10,7 +10,7 @@ Simple API to read information from Jira
 - ✅ Read issues for a given fix version
 
 ### How does it Work?
-* It connects to a Jira instance via HTTPS (uses username/password authorization for now).
+* Connects to a Jira instance via HTTPS (uses username/password authorization for now).
 * Calls REST end points on the Jira instance
 * Automatically closes the connection afterwards
 
@@ -25,4 +25,4 @@ On your terminal run:
 ```
 mvn clean install
 ```
-:bulb: _This also builds the JAR-with-dependencies_
+💡 _This also builds the JAR-with-dependencies_
