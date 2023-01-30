@@ -37,9 +37,22 @@ String user = "myName@sampleMail.com";
 String apiToken = "123Fly";
 String jiraInstance = "https://my-name.atlassian.net/";
 
-String jql = "project = MYPROJ ORDER BY Rank ASC";
-
 JiraAccessConfig config = new JiraAccessConfig(jiraInstance, user, apiToken);
-JiraIssuesForJqlProvider provider = new JiraIssuesForJqlProvider();
-List<Issue> issues = provider.getIssues(config, jql);
+
+// Get issues for JQL
+String jql = "project = EXWM ORDER BY Rank ASC";
+JiraIssuesForJqlProvider issuesProvider = new JiraIssuesForJqlProvider();
+List<Issue> issues = issuesProvider.getIssues(config, jql);
+
+// Get all versions in project MYPROJ
+JiraVersionsProvider versionsProvider = new JiraVersionsProvider();
+List<Version> allVersionsInProject = versionsProvider.getVersions(config, "MYPROJ");
+
+// Get released versions in time window from 20th Jan (included) to 1st Feb (exluded)
+JiraFilteredReleasedVersionsProvider versionsProvider2 = new JiraFilteredReleasedVersionsProvider();
+List<Version> versions = versionsProvider2.getReleasedVersions(config, "2023-01-20", "2023-02-01", "MYPROJ");
+
+// Get all issues with fix-version "1.0.0"
+JiraIssuesForVersionProvider issuesForVersionsProvider = new JiraIssuesForVersionProvider();
+List<Issue> issuesForVersion = issuesForVersionsProvider.getIssuesForVersion(config, "1.0.0");
 ```
