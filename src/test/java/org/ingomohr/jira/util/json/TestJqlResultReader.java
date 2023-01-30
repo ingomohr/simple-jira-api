@@ -15,8 +15,6 @@ import org.ingomohr.jira.model.JqlResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.google.gson.Gson;
-
 class TestJqlResultReader {
 
 	private JqlResultReader objUT;
@@ -41,8 +39,6 @@ class TestJqlResultReader {
 		assertEquals(17, actual.total());
 		assertEquals(1, actual.issues().size());
 		Issue actualIssue = actual.issues().get(0);
-
-		System.out.println(new Gson().toJson(actualIssue));
 
 		assertEquals("This is the summary of the issue", actualIssue.fields().summary());
 		assertEquals("This is the description of the issue", actualIssue.fields().description());
