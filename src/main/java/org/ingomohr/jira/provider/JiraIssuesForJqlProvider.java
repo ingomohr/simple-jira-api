@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Objects;
 
 import org.ingomohr.jira.JiraAccessConfig;
-import org.ingomohr.jira.JiraJqlExecutor;
 import org.ingomohr.jira.model.Issue;
 import org.ingomohr.jira.model.JqlResult;
 import org.ingomohr.jira.util.json.JqlResultReader;
@@ -35,12 +34,12 @@ public class JiraIssuesForJqlProvider {
 	 * @throws IOException      if there's a problem accessing the server.
 	 * @throws RuntimeException if the server doesn't respond with code 200.
 	 */
-	public List<Issue> execute(JiraAccessConfig config, String jqlQuery) throws IOException {
+	public List<Issue> getIssues(JiraAccessConfig config, String jqlQuery) throws IOException {
 		Objects.requireNonNull(config);
 		Objects.requireNonNull(jqlQuery);
 
-		JiraJqlExecutor executor = createJiraJqlExecutor();
-		String response = executor.execute(config, jqlQuery);
+		JiraJsonResultForJqlProvider executor = createJiraJqlExecutor();
+		String response = executor.getJsonResult(config, jqlQuery);
 
 		JqlResultReader reader = createJqlResultReader();
 		JqlResult result = reader.readJqlResult(response);
@@ -49,8 +48,8 @@ public class JiraIssuesForJqlProvider {
 		return issues;
 	}
 
-	protected JiraJqlExecutor createJiraJqlExecutor() {
-		return new JiraJqlExecutor();
+	protected JiraJsonResultForJqlProvider createJiraJqlExecutor() {
+		return new JiraJsonResultForJqlProvider();
 	}
 
 	protected JqlResultReader createJqlResultReader() {

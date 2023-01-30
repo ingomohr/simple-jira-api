@@ -1,8 +1,6 @@
 package org.ingomohr.jira.provider;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +10,9 @@ import java.util.concurrent.atomic.AtomicReference;
 import org.ingomohr.jira.JiraAccessConfig;
 import org.ingomohr.jira.model.Version;
 import org.ingomohr.jira.util.http.AutoClosingJiraHttpRequestExecutor;
+import org.ingomohr.jira.util.http.command.AssertResponseIsOkCommand;
+import org.ingomohr.jira.util.http.command.FetchResponseLinesCommand;
+import org.ingomohr.jira.util.http.command.HttpUrlConnectionCommand;
 import org.ingomohr.jira.util.json.VersionsReader;
 
 /**
@@ -39,20 +40,32 @@ public class JiraVersionsProvider {
 		final String restUrlSuffix = "rest/api/latest/project/" + projectKey + "/versions";
 
 		final AtomicReference<String> response = new AtomicReference<>();
-		AutoClosingJiraHttpRequestExecutor executor = new AutoClosingJiraHttpRequestExecutor() {
+
+		AutoClosingJiraHttpRequestExecutor executor = new AutoClosingJiraHttpRequestExecutor();
+
+		List<HttpUrlConnectionCommand> commands = new ArrayList<>();
+
+		commands.add(new HttpUrlConnectionCommand() {
 
 			@Override
-			protected void execute(HttpURLConnection conn) throws IOException {
-				conn.setRequestMethod("GET");
-				conn.setRequestProperty("Accept", "application/json");
+			public void run(HttpURLConnection connection) throws IOException {
+				connection.setRequestMethod("GET");
+				connection.setRequestProperty("Accept", "application/json");
+			}
+		});
+		commands.add(new AssertResponseIsOkCommand());
+		commands.add(new HttpUrlConnectionCommand() {
 
-				assertResponseIsOK(conn);
-
-				List<String> lines = fetchResponseLines(conn);
+			@Override
+			public void run(HttpURLConnection connection) throws IOException {
+				FetchResponseLinesCommand cmd = new FetchResponseLinesCommand();
+				cmd.run(connection);
+				List<String> lines = cmd.getLines();
 				response.set(String.join("\n", lines));
 			}
-		};
-		executor.execute(config, restUrlSuffix);
+		});
+
+		executor.execute(config, restUrlSuffix, commands);
 
 		String json = response.get();
 		List<Version> versions = createJSonReader().readVersions(json);
@@ -62,17 +75,6 @@ public class JiraVersionsProvider {
 
 	protected VersionsReader createJSonReader() {
 		return new VersionsReader();
-	}
-
-	private List<String> fetchResponseLines(HttpURLConnection conn) throws IOException {
-		List<String> lines = new ArrayList<>();
-		try (BufferedReader in = new BufferedReader(new InputStreamReader((conn.getInputStream())))) {
-			String output;
-			while ((output = in.readLine()) != null) {
-				lines.add(output);
-			}
-		}
-		return lines;
 	}
 
 }

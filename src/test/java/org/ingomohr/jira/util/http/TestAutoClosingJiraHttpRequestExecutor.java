@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 
 import org.ingomohr.jira.JiraAccessConfig;
+import org.ingomohr.jira.util.http.command.HttpUrlConnectionCommand;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -48,24 +49,26 @@ public class TestAutoClosingJiraHttpRequestExecutor {
 
 	private void execute_executionThrowsException_DisconnectIsStillCalled(ExceptionType type) {
 		AutoClosingJiraHttpRequestExecutor objUT = new AutoClosingJiraHttpRequestExecutor() {
-
-			@Override
-			protected void execute(HttpURLConnection connection) throws IOException {
-				if (type == ExceptionType.Unchecked) {
-					throw new RuntimeException("foo");
-				} else {
-					throw new IOException("bar");
-				}
-			}
-
 			@Override
 			protected JiraHttpConnector createJiraHttpConnector() {
 				return connector;
 			}
 		};
 
+		HttpUrlConnectionCommand cmd = new HttpUrlConnectionCommand() {
+
+			@Override
+			public void run(HttpURLConnection connection) throws IOException {
+				if (type == ExceptionType.Unchecked) {
+					throw new RuntimeException("foo");
+				} else {
+					throw new IOException("bar");
+				}
+			}
+		};
+
 		try {
-			objUT.execute(config, "mySuffix");
+			objUT.execute(config, "mySuffix", cmd);
 		} catch (Exception ex) {
 			// ignore. We don't care for the exception. We only care for the disconnect to
 			// happen.

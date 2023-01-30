@@ -52,7 +52,7 @@ public class JiraIssuesForVersionProvider {
 		Objects.requireNonNull(versionName);
 
 		JiraIssuesForJqlProvider provider = createIssuesForJqlProvider();
-		List<Issue> issues = provider.execute(config, "fixVersion in (" + versionName + ")");
+		List<Issue> issues = provider.getIssues(config, "fixVersion in (" + versionName + ")");
 		return issues;
 	}
 

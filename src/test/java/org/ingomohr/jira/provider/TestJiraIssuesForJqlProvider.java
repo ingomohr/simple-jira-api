@@ -7,7 +7,6 @@ import static org.mockito.Mockito.when;
 import java.util.List;
 
 import org.ingomohr.jira.JiraAccessConfig;
-import org.ingomohr.jira.JiraJqlExecutor;
 import org.ingomohr.jira.model.Issue;
 import org.ingomohr.jira.model.JqlResult;
 import org.ingomohr.jira.util.json.JqlResultReader;
@@ -22,18 +21,18 @@ class TestJiraIssuesForJqlProvider {
 	private JiraIssuesForJqlProvider objUT;
 
 	private JqlResultReader resultReader;
-	private JiraJqlExecutor jqlExecutor;
+	private JiraJsonResultForJqlProvider jsonResultProvider;
 
 	@BeforeEach
 	void prep() {
-		jqlExecutor = mock(JiraJqlExecutor.class);
+		jsonResultProvider = mock(JiraJsonResultForJqlProvider.class);
 		resultReader = mock(JqlResultReader.class);
 
 		objUT = new JiraIssuesForJqlProvider() {
 
 			@Override
-			protected JiraJqlExecutor createJiraJqlExecutor() {
-				return jqlExecutor;
+			protected JiraJsonResultForJqlProvider createJiraJqlExecutor() {
+				return jsonResultProvider;
 			}
 
 			@Override
@@ -53,10 +52,10 @@ class TestJiraIssuesForJqlProvider {
 		JqlResult result = mock(JqlResult.class);
 		when(result.issues()).thenReturn(issues);
 
-		when(jqlExecutor.execute(config, JQL)).thenReturn(RESULT);
+		when(jsonResultProvider.getJsonResult(config, JQL)).thenReturn(RESULT);
 		when(resultReader.readJqlResult(RESULT)).thenReturn(result);
 
-		assertSame(issues, objUT.execute(config, JQL));
+		assertSame(issues, objUT.getIssues(config, JQL));
 	}
 
 }

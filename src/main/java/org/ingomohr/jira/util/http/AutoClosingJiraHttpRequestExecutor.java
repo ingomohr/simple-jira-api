@@ -2,72 +2,75 @@ package org.ingomohr.jira.util.http;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.util.Objects;
+import java.util.Arrays;
+import java.util.List;
 
 import org.ingomohr.jira.JiraAccessConfig;
+import org.ingomohr.jira.util.http.command.HttpUrlConnectionCommand;
 
 /**
  * Executes some request on an HTTP connection which is both created and closed
  * automatically.
  * <p>
- * Subclasses implement {@link #execute(HttpURLConnection)} to perform the
- * actual request.
+ * The request can be specified by a number of commands to be executed
+ * sequentially.
  * </p>
  * 
  * @author ingomohr
  */
-public abstract class AutoClosingJiraHttpRequestExecutor {
+public class AutoClosingJiraHttpRequestExecutor {
 
-	public void execute(JiraAccessConfig config, String restUrlSuffix) throws IOException {
+	/**
+	 * Executes the request specified by the given commands on a connection
+	 * established for the given config and
+	 * 
+	 * @param config        the config to specify the connection. Cannot be
+	 *                      <code>null</code>.
+	 * @param restUrlSuffix the rest call to be appended to the server url. Can
+	 *                      optionally start with a <code>/</code>. Cannot be
+	 *                      <code>null</code>.
+	 * @param commands      the commands to execute.
+	 * @throws IOException if there's a problem executing on the connection.
+	 */
+	public void execute(JiraAccessConfig config, String restUrlSuffix, List<HttpUrlConnectionCommand> commands)
+			throws IOException {
 		JiraHttpConnector connector = createJiraHttpConnector();
 
 		HttpURLConnection connection = null;
 		try {
 			connection = connector.connect(config, restUrlSuffix);
-			execute(connection);
+
+			for (HttpUrlConnectionCommand cmd : commands) {
+				cmd.run(connection);
+			}
 
 		} finally {
 			if (connection != null) {
 				connection.disconnect();
 			}
 		}
+
 	}
 
 	/**
-	 * Called by {@link #execute(JiraAccessConfig, String)}.
-	 * <p>
-	 * Executes some request on the given connection. The connection has been opened
-	 * before calling this method and will be closed afterwards.
-	 * </p>
-	 * <p>
-	 * Subclasses implement this method perform the actual request on the
-	 * connection.
-	 * </p>
+	 * Executes the request specified by the given commands on a connection
+	 * established for the given config and
 	 * 
-	 * @param connection the connection. Never <code>null</code>, is already open.
-	 * @throws IOException if there are problems with the connection configuration.
-	 * @see #assertResponseIsOK(HttpURLConnection)
+	 * @param config        the config to specify the connection. Cannot be
+	 *                      <code>null</code>.
+	 * @param restUrlSuffix the rest call to be appended to the server url. Can
+	 *                      optionally start with a <code>/</code>. Cannot be
+	 *                      <code>null</code>.
+	 * @param commands      the commands to execute.
+	 * @throws IOException if there's a problem executing on the connection.
 	 */
-	protected abstract void execute(HttpURLConnection connection) throws IOException;
+	public void execute(JiraAccessConfig config, String restUrlSuffix, HttpUrlConnectionCommand... commands)
+			throws IOException {
+		execute(config, restUrlSuffix, Arrays.asList(commands));
+	}
 
 	protected JiraHttpConnector createJiraHttpConnector() {
 		return new JiraHttpConnector();
-	}
-
-	/**
-	 * Throws a {@link RuntimeException} if the given connection's response is not
-	 * 200 (OK).
-	 * 
-	 * @param conn the connection. Cannot be <code>null</code>.
-	 * @throws IOException if connection setup is not valid.
-	 */
-	protected void assertResponseIsOK(HttpURLConnection conn) throws IOException {
-		Objects.requireNonNull(conn);
-
-		int responseCode = conn.getResponseCode();
-		if (responseCode != 200) {
-			throw new RuntimeException("Failed : HTTP error code : " + responseCode);
-		}
 	}
 
 }
