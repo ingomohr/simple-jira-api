@@ -38,8 +38,8 @@ public class JiraIssuesForJqlProvider {
 		Objects.requireNonNull(config);
 		Objects.requireNonNull(jqlQuery);
 
-		JiraJsonResultForJqlProvider executor = createJiraJqlExecutor();
-		String response = executor.getJsonResult(config, jqlQuery);
+		JiraJsonResultForJqlProvider provider = createJsonResultForJqlProvider();
+		String response = provider.getJsonResult(config, jqlQuery);
 
 		JqlResultReader reader = createJqlResultReader();
 		JqlResult result = reader.readJqlResult(response);
@@ -48,7 +48,7 @@ public class JiraIssuesForJqlProvider {
 		return issues;
 	}
 
-	protected JiraJsonResultForJqlProvider createJiraJqlExecutor() {
+	protected JiraJsonResultForJqlProvider createJsonResultForJqlProvider() {
 		return new JiraJsonResultForJqlProvider();
 	}
 

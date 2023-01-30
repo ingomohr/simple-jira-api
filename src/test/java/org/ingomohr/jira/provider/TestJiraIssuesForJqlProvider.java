@@ -31,7 +31,7 @@ class TestJiraIssuesForJqlProvider {
 		objUT = new JiraIssuesForJqlProvider() {
 
 			@Override
-			protected JiraJsonResultForJqlProvider createJiraJqlExecutor() {
+			protected JiraJsonResultForJqlProvider createJsonResultForJqlProvider() {
 				return jsonResultProvider;
 			}
 
