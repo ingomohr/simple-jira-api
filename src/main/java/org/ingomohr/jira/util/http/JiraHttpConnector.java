@@ -23,7 +23,8 @@ public class JiraHttpConnector {
 	 *                      optionally start with a <code>/</code>. Cannot be
 	 *                      <code>null</code>.
 	 * @return connection (already connected). Never <code>null</code>. The
-	 *         connection needs to be closed by the client.
+	 *         connection needs to be closed by the client. See
+	 *         {@link HttpURLConnection#disconnect()}.
 	 * @throws IOException if connection config isn't valid.
 	 */
 	public HttpURLConnection connect(JiraAccessConfig config, String restUrlSuffix) throws IOException {
