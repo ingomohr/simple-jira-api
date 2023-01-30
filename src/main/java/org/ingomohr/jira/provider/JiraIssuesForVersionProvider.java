@@ -5,14 +5,13 @@ import java.util.List;
 import java.util.Objects;
 
 import org.ingomohr.jira.JiraAccessConfig;
-import org.ingomohr.jira.JiraIssuesJqlExecutor;
 import org.ingomohr.jira.model.Issue;
 import org.ingomohr.jira.model.Version;
 
 /**
  * Returns all issues for a given version.
  * <p>
- * Automatically connects and disconnected to/from Jira.
+ * Automatically connects and disconnects to/from Jira.
  * </p>
  * 
  * @author ingomohr
@@ -52,13 +51,13 @@ public class JiraIssuesForVersionProvider {
 		Objects.requireNonNull(config);
 		Objects.requireNonNull(versionName);
 
-		JiraIssuesJqlExecutor executor = createExecutor();
-		List<Issue> issues = executor.execute(config, "fixVersion in (" + versionName + ")");
+		JiraIssuesForJqlProvider provider = createIssuesForJqlProvider();
+		List<Issue> issues = provider.execute(config, "fixVersion in (" + versionName + ")");
 		return issues;
 	}
 
-	protected JiraIssuesJqlExecutor createExecutor() {
-		return new JiraIssuesJqlExecutor();
+	protected JiraIssuesForJqlProvider createIssuesForJqlProvider() {
+		return new JiraIssuesForJqlProvider();
 	}
 
 }

@@ -1,20 +1,24 @@
-package org.ingomohr.jira;
+package org.ingomohr.jira.provider;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
+import org.ingomohr.jira.JiraAccessConfig;
+import org.ingomohr.jira.JiraJqlExecutor;
 import org.ingomohr.jira.model.Issue;
 import org.ingomohr.jira.model.JqlResult;
 import org.ingomohr.jira.util.json.JqlResultReader;
 
 /**
- * Connects to Jira and returns all issues found for a given JQL query.
- * Disconnects automatically from Jira.
+ * Returns all issues for a given JQL query.
+ * <p>
+ * Automatically connects and disconnects to/from Jira.
+ * </p>
  * 
  * @author ingomohr
  */
-public class JiraIssuesJqlExecutor {
+public class JiraIssuesForJqlProvider {
 
 	/**
 	 * Executes the given JQL query on the Jira server specified with the given
@@ -35,7 +39,7 @@ public class JiraIssuesJqlExecutor {
 		Objects.requireNonNull(config);
 		Objects.requireNonNull(jqlQuery);
 
-		JiraJqlExecutor executor = createExecutor();
+		JiraJqlExecutor executor = createJiraJqlExecutor();
 		String response = executor.execute(config, jqlQuery);
 
 		JqlResultReader reader = createJqlResultReader();
@@ -45,7 +49,7 @@ public class JiraIssuesJqlExecutor {
 		return issues;
 	}
 
-	protected JiraJqlExecutor createExecutor() {
+	protected JiraJqlExecutor createJiraJqlExecutor() {
 		return new JiraJqlExecutor();
 	}
 
