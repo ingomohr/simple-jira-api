@@ -17,8 +17,7 @@ import org.ingomohr.jira.util.json.VersionsReader;
 /**
  * Returns all versions for a given project key.
  * <p>
- * This creates a connection to Jira on demand and also closes that connection
- * again.
+ * Automatically connects and disconnects to/from Jira.
  * </p>
  * 
  * @author ingomohr

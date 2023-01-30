@@ -15,6 +15,9 @@ import org.ingomohr.jira.model.Version;
 /**
  * Returns all released versions in a given time window that belong to given
  * projects.
+ * <p>
+ * Automatically connects and disconnects to/from Jira.
+ * </p>
  * 
  * @author ingomohr
  */
