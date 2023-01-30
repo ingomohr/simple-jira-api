@@ -40,6 +40,6 @@ String jiraInstance = "https://my-name.atlassian.net/";
 String jql = "project = MYPROJ ORDER BY Rank ASC";
 
 JiraAccessConfig config = new JiraAccessConfig(jiraInstance, user, apiToken);
-JiraIssuesJqlExecutor executor = new JiraIssuesJqlExecutor();
-List<Issue> issues = executor.execute(config, jql);
+JiraIssuesForJqlProvider provider = new JiraIssuesForJqlProvider();
+List<Issue> issues = provider.getIssues(config, jql);
 ```
