@@ -15,12 +15,11 @@ Simple API to read information from Jira
 * Automatically closes the connection afterwards
 
 ### Requirements
-- Java 17 JRE installed (or newer)
-- Access to some Jira instance
-  - (tested on Jira Server 8.22.6 and Jira Cloud)
+- Java 25 JRE installed (or newer)
+- Access to some Jira (Cloud) instance
 
 ### How to Build
-- You need Maven installed (e.g. 3.8.6)
+- You need Maven installed (e.g. 3.9.14)
 
 On your terminal run:
 ```
