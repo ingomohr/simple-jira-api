@@ -32,9 +32,9 @@ public class JiraIssuesForJqlProvider {
 	 * @param jqlQuery the query to run. Cannot be <code>null</code>.
 	 * @return all issues found for the given query. Never <code>null</code>,
 	 *         possibly empty.
-	 * @throws IOException      if there's a problem accessing the server.
+	 * @throws IOException        if there's a problem accessing the server.
 	 * @throws URISyntaxException if URL construction fails.
-	 * @throws RuntimeException if the server doesn't respond with code 200.
+	 * @throws RuntimeException   if the server doesn't respond with code 200.
 	 */
 	public List<Issue> getIssues(JiraAccessConfig config, String jqlQuery) throws IOException, URISyntaxException {
 		Objects.requireNonNull(config);

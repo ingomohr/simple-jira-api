@@ -28,10 +28,12 @@ public class JiraIssuesForVersionProvider {
 	 *                <code>null</code>. Must have a name.
 	 * @return all issues for given version as "fix version". Never
 	 *         <code>null</code>, possibly empty.
-	 * @throws IOException if there are problems with the connection configuration.
+	 * @throws IOException        if there are problems with the connection
+	 *                            configuration.
 	 * @throws URISyntaxException if URL construction fails.
 	 */
-	public List<Issue> getIssuesForVersion(JiraAccessConfig config, Version version) throws IOException, URISyntaxException {
+	public List<Issue> getIssuesForVersion(JiraAccessConfig config, Version version)
+			throws IOException, URISyntaxException {
 		Objects.requireNonNull(version);
 		Objects.requireNonNull(version.name());
 
@@ -47,10 +49,12 @@ public class JiraIssuesForVersionProvider {
 	 *                <code>null</code>.
 	 * @return all issues for given version as "fix version". Never
 	 *         <code>null</code>, possibly empty.
-	 * @throws IOException if there are problems with the connection configuration.
+	 * @throws IOException        if there are problems with the connection
+	 *                            configuration.
 	 * @throws URISyntaxException if URL construction fails.
 	 */
-	public List<Issue> getIssuesForVersion(JiraAccessConfig config, String versionName) throws IOException, URISyntaxException {
+	public List<Issue> getIssuesForVersion(JiraAccessConfig config, String versionName)
+			throws IOException, URISyntaxException {
 		Objects.requireNonNull(config);
 		Objects.requireNonNull(versionName);
 

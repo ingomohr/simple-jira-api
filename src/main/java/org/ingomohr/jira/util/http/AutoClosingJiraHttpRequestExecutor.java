@@ -31,12 +31,12 @@ public class AutoClosingJiraHttpRequestExecutor {
 	 *                      optionally start with a <code>/</code>. Cannot be
 	 *                      <code>null</code>.
 	 * @param commands      the commands to execute.
-	 * @throws IOException if there's a problem executing on the connection.
+	 * @throws IOException        if there's a problem executing on the connection.
 	 * @throws URISyntaxException if URL construction fails.
 	 */
 	public void execute(JiraAccessConfig config, String restUrlSuffix, List<HttpUrlConnectionCommand> commands)
 			throws IOException, URISyntaxException {
-		
+
 		JiraHttpConnector connector = createJiraHttpConnector();
 
 		HttpURLConnection connection = null;
@@ -65,8 +65,8 @@ public class AutoClosingJiraHttpRequestExecutor {
 	 *                      optionally start with a <code>/</code>. Cannot be
 	 *                      <code>null</code>.
 	 * @param commands      the commands to execute.
-	 * @throws IOException if there's a problem executing on the connection.
-	 * @throws URISyntaxException 
+	 * @throws IOException        if there's a problem executing on the connection.
+	 * @throws URISyntaxException
 	 */
 	public void execute(JiraAccessConfig config, String restUrlSuffix, HttpUrlConnectionCommand... commands)
 			throws IOException, URISyntaxException {

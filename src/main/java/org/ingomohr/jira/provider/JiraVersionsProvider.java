@@ -32,10 +32,12 @@ public class JiraVersionsProvider {
 	 * @param config     the Jira access config. Cannot be <code>null</code>.
 	 * @param projectKey the project key to use. Cannot be <code>null</code>.
 	 * @return all versions. Never <code>null</code>, possibly empty.
-	 * @throws IOException if there are problems with the connection configuration.
+	 * @throws IOException        if there are problems with the connection
+	 *                            configuration.
 	 * @throws URISyntaxException if URL construction fails.
 	 */
-	public List<Version> getVersions(JiraAccessConfig config, String projectKey) throws IOException, URISyntaxException {
+	public List<Version> getVersions(JiraAccessConfig config, String projectKey)
+			throws IOException, URISyntaxException {
 		Objects.requireNonNull(config);
 		Objects.requireNonNull(projectKey);
 

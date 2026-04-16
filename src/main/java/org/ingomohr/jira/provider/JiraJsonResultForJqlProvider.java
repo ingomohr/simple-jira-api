@@ -33,9 +33,9 @@ public class JiraJsonResultForJqlProvider {
 	 *                 <code>null</code>.
 	 * @param jqlQuery the query to execute. Cannot be <code>null</code>.
 	 * @return result from the server - as JSON.
-	 * @throws IOException      if there's a problem accessing the server.
+	 * @throws IOException        if there's a problem accessing the server.
 	 * @throws URISyntaxException if URL construction fails.
-	 * @throws RuntimeException if the server doesn't respond with code 200.
+	 * @throws RuntimeException   if the server doesn't respond with code 200.
 	 */
 	public String getJsonResult(JiraAccessConfig config, String jqlQuery) throws IOException, URISyntaxException {
 
