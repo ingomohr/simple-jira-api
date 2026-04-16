@@ -23,7 +23,7 @@ Simple API to read information from Jira
 
 On your terminal run:
 ```
-mvn clean install
+mvn clean verify
 ```
 💡 _This also builds the JAR-with-dependencies_
 
