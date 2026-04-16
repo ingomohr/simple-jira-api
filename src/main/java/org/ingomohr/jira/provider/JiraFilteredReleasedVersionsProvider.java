@@ -1,6 +1,7 @@
 package org.ingomohr.jira.provider;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,9 +42,10 @@ public class JiraFilteredReleasedVersionsProvider {
 	 * @return all released versions that fit the time window from given projects.
 	 *         Never <code>null</code>, possibly empty.
 	 * @throws IOException
+	 * @throws URISyntaxException if URL construction fails.
 	 */
 	public List<Version> getReleasedVersions(JiraAccessConfig config, String fromIncluded, String toExcluded,
-			String... projectKeys) throws IOException {
+			String... projectKeys) throws IOException, URISyntaxException {
 
 		Objects.requireNonNull(config);
 		assertIsDateOrNull(fromIncluded);

@@ -1,6 +1,7 @@
 package org.ingomohr.jira.provider;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 
@@ -32,9 +33,10 @@ public class JiraIssuesForJqlProvider {
 	 * @return all issues found for the given query. Never <code>null</code>,
 	 *         possibly empty.
 	 * @throws IOException      if there's a problem accessing the server.
+	 * @throws URISyntaxException if URL construction fails.
 	 * @throws RuntimeException if the server doesn't respond with code 200.
 	 */
-	public List<Issue> getIssues(JiraAccessConfig config, String jqlQuery) throws IOException {
+	public List<Issue> getIssues(JiraAccessConfig config, String jqlQuery) throws IOException, URISyntaxException {
 		Objects.requireNonNull(config);
 		Objects.requireNonNull(jqlQuery);
 

@@ -2,6 +2,7 @@ package org.ingomohr.jira.provider;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.URISyntaxException;
 import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.List;
@@ -33,9 +34,10 @@ public class JiraJsonResultForJqlProvider {
 	 * @param jqlQuery the query to execute. Cannot be <code>null</code>.
 	 * @return result from the server - as JSON.
 	 * @throws IOException      if there's a problem accessing the server.
+	 * @throws URISyntaxException if URL construction fails.
 	 * @throws RuntimeException if the server doesn't respond with code 200.
 	 */
-	public String getJsonResult(JiraAccessConfig config, String jqlQuery) throws IOException {
+	public String getJsonResult(JiraAccessConfig config, String jqlQuery) throws IOException, URISyntaxException {
 
 		Objects.requireNonNull(config);
 		Objects.requireNonNull(jqlQuery);

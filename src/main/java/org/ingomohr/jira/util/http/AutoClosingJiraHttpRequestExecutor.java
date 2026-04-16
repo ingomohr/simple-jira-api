@@ -2,6 +2,7 @@ package org.ingomohr.jira.util.http;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,9 +32,11 @@ public class AutoClosingJiraHttpRequestExecutor {
 	 *                      <code>null</code>.
 	 * @param commands      the commands to execute.
 	 * @throws IOException if there's a problem executing on the connection.
+	 * @throws URISyntaxException if URL construction fails.
 	 */
 	public void execute(JiraAccessConfig config, String restUrlSuffix, List<HttpUrlConnectionCommand> commands)
-			throws IOException {
+			throws IOException, URISyntaxException {
+		
 		JiraHttpConnector connector = createJiraHttpConnector();
 
 		HttpURLConnection connection = null;
@@ -63,9 +66,10 @@ public class AutoClosingJiraHttpRequestExecutor {
 	 *                      <code>null</code>.
 	 * @param commands      the commands to execute.
 	 * @throws IOException if there's a problem executing on the connection.
+	 * @throws URISyntaxException 
 	 */
 	public void execute(JiraAccessConfig config, String restUrlSuffix, HttpUrlConnectionCommand... commands)
-			throws IOException {
+			throws IOException, URISyntaxException {
 		execute(config, restUrlSuffix, Arrays.asList(commands));
 	}
 

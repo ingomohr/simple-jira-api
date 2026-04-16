@@ -2,6 +2,7 @@ package org.ingomohr.jira.provider;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -32,8 +33,9 @@ public class JiraVersionsProvider {
 	 * @param projectKey the project key to use. Cannot be <code>null</code>.
 	 * @return all versions. Never <code>null</code>, possibly empty.
 	 * @throws IOException if there are problems with the connection configuration.
+	 * @throws URISyntaxException if URL construction fails.
 	 */
-	public List<Version> getVersions(JiraAccessConfig config, String projectKey) throws IOException {
+	public List<Version> getVersions(JiraAccessConfig config, String projectKey) throws IOException, URISyntaxException {
 		Objects.requireNonNull(config);
 		Objects.requireNonNull(projectKey);
 

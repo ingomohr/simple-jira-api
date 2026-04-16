@@ -2,6 +2,8 @@ package org.ingomohr.jira.util.http;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Base64;
 import java.util.Objects;
@@ -25,9 +27,11 @@ public class JiraHttpConnector {
 	 * @return connection (already connected). Never <code>null</code>. The
 	 *         connection needs to be closed by the client. See
 	 *         {@link HttpURLConnection#disconnect()}.
-	 * @throws IOException if connection config isn't valid.
+	 * @throws IOException        if connection config isn't valid.
+	 * @throws URISyntaxException if the resulting URL isn't valid.
 	 */
-	public HttpURLConnection connect(JiraAccessConfig config, String restUrlSuffix) throws IOException {
+	public HttpURLConnection connect(JiraAccessConfig config, String restUrlSuffix)
+			throws IOException, URISyntaxException {
 
 		/*
 		 * Q: Why not use HTTPClient API from Java 11?
@@ -46,7 +50,8 @@ public class JiraHttpConnector {
 		String pwd = config.password();
 		String auth = new String(Base64.getEncoder().encode((user + ":" + pwd).getBytes()));
 
-		URL url = new URL(fullUrl);
+		URL url = new URI(fullUrl).toURL();
+
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestProperty("Authorization", "Basic " + auth);
 		return conn;

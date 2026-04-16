@@ -1,6 +1,7 @@
 package org.ingomohr.jira.provider;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,8 +29,9 @@ public class JiraIssuesForVersionProvider {
 	 * @return all issues for given version as "fix version". Never
 	 *         <code>null</code>, possibly empty.
 	 * @throws IOException if there are problems with the connection configuration.
+	 * @throws URISyntaxException if URL construction fails.
 	 */
-	public List<Issue> getIssuesForVersion(JiraAccessConfig config, Version version) throws IOException {
+	public List<Issue> getIssuesForVersion(JiraAccessConfig config, Version version) throws IOException, URISyntaxException {
 		Objects.requireNonNull(version);
 		Objects.requireNonNull(version.name());
 
@@ -46,8 +48,9 @@ public class JiraIssuesForVersionProvider {
 	 * @return all issues for given version as "fix version". Never
 	 *         <code>null</code>, possibly empty.
 	 * @throws IOException if there are problems with the connection configuration.
+	 * @throws URISyntaxException if URL construction fails.
 	 */
-	public List<Issue> getIssuesForVersion(JiraAccessConfig config, String versionName) throws IOException {
+	public List<Issue> getIssuesForVersion(JiraAccessConfig config, String versionName) throws IOException, URISyntaxException {
 		Objects.requireNonNull(config);
 		Objects.requireNonNull(versionName);
 
